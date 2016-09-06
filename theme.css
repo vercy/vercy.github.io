@@ -1,0 +1,9 @@
+body {
+  background: lightslategray;
+}
+.center{
+  color: palegoldenrod;
+  font-family: Courier New,Fixed;
+  font-size:24em;
+  font-style:italic;
+}
