@@ -2,7 +2,7 @@ body {
   background: #efeff2;
   color: #343d46;
   font-family: "Times New Roman", Georgia, Serif;
-  font-size: 12pt;
+  font-size: 18px;
 }
 
 .main {
@@ -15,16 +15,16 @@ body {
 }
 
 h1 {
-  font-size: 24pt;
-  letter-spacing: 2pt;
+  font-size: 200%;
+  letter-spacing: 4px;
   font-style: italic;
   font-weight: bold;
 }
 
 .content {
     text-align: center;
-    letter-spacing: 1.25pt;
-    font-size: 14pt;
+    letter-spacing: 2px;
+    font-size: 117%;
     @include vertical-align();
 }
 
