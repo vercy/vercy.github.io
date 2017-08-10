@@ -1,0 +1,87 @@
+---
+---
+@import "{{ site.theme }}";
+
+body {
+  background: #efeff2;
+  color: #343d46;
+  font-family: "Times New Roman", Georgia, Serif;
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+}
+
+.main {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-40%);
+  -webkit-transform: translateX(-50%) translateY(-40%);
+  transform: translateX(-50%) translateY(-40%);
+}
+
+.nav-home {
+  font-size: 200%;
+  letter-spacing: 4px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.content {
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 117%;
+}
+
+a {
+    color: #343d46;
+    text-decoration: none;
+}
+.nav-home {
+    display: inline;
+}
+
+.nav-home a:hover {
+    display: inline;
+    color: #343d46;
+}
+
+header {
+    background: #ebebef;
+    color: #343d46;
+    position: fixed;
+    top: 0;
+    height: 50px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    width: 100%;
+    z-index: 100;
+}
+
+section {
+    padding-top: 50px;
+    width: 100%;
+}
+
+.nav-wrap {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.nav-ext {
+    float: right;
+}
+
+.content-wrap {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.wrapper {
+width: 100%;
+}
