@@ -9,6 +9,8 @@ body {
   margin: 0;
   font-family: Georgia,Times,Times New Roman,serif;
   font-size: 18px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 a {
@@ -28,11 +30,11 @@ a {
 }
 
 .nav-home {
-  font-size: 245%;
+  font-size: 150%;
   letter-spacing: 4px;
   font-style: italic;
   font-weight: bold;
-  padding-left: 0.5in;
+  padding-left: 0.1in;
   float: left;
 }
 
@@ -63,7 +65,7 @@ a {
 
 .nav-header li {
     margin-top: 24px;
-    padding-left: 30px;
+    padding-left: 20px;
     float: left;
     border-right: 0;
     height: 50px;
@@ -73,7 +75,12 @@ a {
     padding-left: 0px;
 }
 
+.nav-right li:last-child {
+    margin-right: 0px;
+}
+
 .nav-right {
+    padding-right: 15px;
     float: right;
 }
 
