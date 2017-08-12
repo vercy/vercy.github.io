@@ -89,6 +89,7 @@ develop an agent that tries to make it dust-free. I developed a map visualizer s
 in real time :) If you are interested in the source code you can find that in the downloadable jar file. The .jar file
 can also be run as a standalone application.
 
+````
 <!--[if !IE]>-->
 <object classid=\"java:gui/DiscreetApplet.class\" type=\"application/x-java-applet\"
         archive=\"content/DiscreetWorld-1.1.jar\"
@@ -103,6 +104,7 @@ can also be run as a standalone application.
 <!--[if !IE]>-->
 </object>
 <!--<![endif]-->
+````
 
 *Instructions*
 1. First you have to select a map. The agent selector boxes appear. The map defines how many agents can you place on them, so it may vary
@@ -218,6 +220,7 @@ I held a practical seminar in algorithm theory at the university in 2004. Althou
 Java applet to help the students verify their ideas. I already wrote a command line Turing-machine, when I was learning
 the subject, so it was not very difficult to turn it into an applet.
 
+````
 <!--[if !IE]>-->
 <object classid=\"java:vtmcore/VTMApplet.class\" type=\"application/x-java-applet\"
         archive=\"content/vtm.jar\"
@@ -232,6 +235,7 @@ the subject, so it was not very difficult to turn it into an applet.
 <!--[if !IE]>-->
 </object>
 <!--<![endif]-->
+````
 
 #### Manual
 The following steps describe the usage of the VTM applet:
