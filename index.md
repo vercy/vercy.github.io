@@ -3,12 +3,15 @@ title: Vercy's Page
 layout: default
 ---
 
-### Initial GitHub version &mdash; 2017-08-12
+# Moved to GitHub
+###### 2017-08-12
+
 Moved the content into the cloud. Version 4 of the page using jekyll and markdown.
 
 
 
-### Language study tool &mdash; 2010-07-20
+# Language study tool
+###### 2010-07-20, [download](nLT.zip)
 
 Create flashcards, lookup Japanese words, reviews decks quickly with nLT
 
@@ -30,8 +33,8 @@ around and finding no suitable tool I started to write my own...
 3. Start nLT.exe (downloads missing components)
 
 
-### Klingon Watch screensaver &mdash; 2009-06-14
-* "download_name":"Klingon Watch.zip",
+# Klingon Watch screensaver
+###### 2009-06-14, [download](Klingon Watch.zip)
 
 After watching the 11th \'Star Trek Movie\' I suddenly felt the urge to contribute to the Star Trek scene. I wrote this
 application in the hope of being able reduce the gap between humanity and the Klingon culture :) The project turned out
@@ -56,19 +59,25 @@ to be a fun way of spending the weekend.
 
 
 
-### Switch | ÜD &mdash; 2008-06-12
+# Switch | ÜD
+###### 2008-06-12, [download](http://pouet.net/prod.php?which=50921)
+
 * "thumb_name":"switch01_thumb_prod.jpg"
 
 A demo made in two days :) I hope you enjoy watching it just as much as we enjoyed making it.
-My part was mostly around the Julia fractal. Switch was ranked 3rd in combined demo category [download](http://pouet.net/prod.php?which=50921).
+My part was mostly around the Julia fractal. Switch was ranked 3rd in combined demo category.
 
 *Requires Hardware support for Pixel shader 3.0*
+* [Youtube](https://www.youtube.com/watch?v=rzgd0U7iqTk)
+* [Pouet](http://www.pouet.net/prod.php?which=50921)
+* [Download](http://umlaut.hu/release/ud_swtch.zip)
 
-<iframe width="854" height="480" src="https://www.youtube.com/embed/rzgd0U7iqTk" frameborder="0" allowfullscreen></iframe>
+* <a href=\"content/images/switch01.jpg\" target=\"_blank\"><img src=\"content/images/switch01_thumb.jpg\" alt=\"Switch\" /></a>
+* <a href=\"content/images/switch02.jpg\" target=\"_blank\"><img src=\"content/images/switch02_thumb.jpg\" alt=\"Switch\" /></a>
 
 
-
-### Discreet World &mdash; 2007-04-15
+# Discreet World
+###### 2007-04-15
 * "description":"A discreet world simulation for AI agents.",
 * "download_name":"DiscreetWorld-1.1.jar",
 
@@ -107,7 +116,8 @@ can also be run as a standalone application.
 
 
 
-### AuToShutdown, Java based timer &mdash; 2006-08-12
+# AuToShutdown, Java based timer
+###### 2006-08-12
 * "download_name":"AuToShutdown-3.4.zip",
 *Latest news:* the latest version of autoshutdown brings you hiberbation. This feature enables you to hibernate your
 computer (OS support required) at the well known predefined events. There is another improvement worth mentioning here:
@@ -128,7 +138,8 @@ Platform | [Java VM](http://java.com/)
 
 
 
-### Sample Grabber &mdash; 2005-09-18
+# Sample Grabber
+###### 2005-09-18
 * "thumb_name":"grabber_thumb_prod.jpg"
 * TODO: github link
 
@@ -160,7 +171,8 @@ Features
 
 
 
-### TrendLines stockchart editor &mdash; 2005-08-17
+# TrendLines stockchart editor
+###### 2005-08-17
 * "thumb_name":"TrendLines-mainwindow_thumb_prod.jpg"
 
 #### Motivation
@@ -196,7 +208,8 @@ Trendlines was called to life by a group stockchart traders who wanted to
 
 
 
-### Turing machine &mdash; 2005-03-06
+# Turing machine
+###### 2005-03-06
 * "download_name":"vtm.jar",
 * "thumb_name":""
 
@@ -236,7 +249,8 @@ Sample instruction using two tapes:
 
 
 
-### Java 3D engine &mdash; 2004-12-10
+# Java 3D engine
+###### 2004-12-10
 * "thumb_name":"java3d01_thumb_prod.jpg"
 
 #### Motivation
@@ -259,7 +273,8 @@ UI for the camera.
 
 
 
-### Quadtree based image compression utility &mdash; 2004-12-01
+# Quadtree based image compression utility
+###### 2004-12-01
 * "thumb_name":"imgquad01_thumb_prod.jpg"
 
 The most basic way to store images is to store each individual pixel's color intensity.
@@ -303,7 +318,8 @@ Subimage generation (16x16 pixels). No support for image dimensions not dividabl
 
 
 
-### Global illumination Raytracer &mdash; 2004-05-01
+# Global illumination Raytracer
+###### 2004-05-01
 * "thumb_name":"raytracer03_thumb_prod.jpg"
 
 #### Motivation
@@ -324,7 +340,10 @@ rendering technology, where the image is the result of a convergence procedure.
 The method uses scan-lines, but in a fashion that gives you a global impression
 very soon.
 
-### Chat server and client &mdash; 2004-04-24
+
+
+# Chat server and client
+###### 2004-04-24
 #### Motivation
 This task was to write a TCP/IP server in C/C++ that runs under Unix. I designed
 a simple communication protocol and started the implementation. As I did not
@@ -337,7 +356,8 @@ was a successful, however my protocol was hacked :)
 
 
 
-### Software 3D &mdash; 2003-02-15
+# Software 3D
+###### 2003-02-15
 "thumb_name":"soft3d01_thumb_prod.jpg"
 "description":"Based on the experience of the previous year I started to build a software 3D engine.",
 
@@ -378,7 +398,8 @@ I would like to say express my gratitude for the members of the team:
 
 
 
-### A C/C++ .3ds loader library rewritten from Pascal &mdash; 2002-10-20
+# A C/C++ .3ds loader library rewritten from Pascal
+###### 2002-10-20
 As a member of [Ümlaüt Design](http://umlaut.hu/) I implemented an import plug-in for the .3ds format.
 This format is commonly used for exporting your work from 3D Studio MAX. This loader was a major
 improvement over the ASCII Export format. However, the internals of the .3ds format
@@ -391,7 +412,8 @@ PASCAL code base by a friend of ÜD thus this project was mainly rewriting exist
 
 
 
-### Texture Producer Studio &mdash; 2002-07-27
+# Texture Producer Studio
+###### 2002-07-27
 
 * "thumb_name":"txgen01_thumb_prod.jpg"
 * Part of the K(ü)ty(ü) intro creation toolkit.
