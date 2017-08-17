@@ -17,6 +17,10 @@ a {
     color: #2B65EC;
     text-decoration: none;
 }
+a:hover {
+    color: #343d46;
+    text-weight: normal;
+}
 
 .nav-header {
     background: #ebebef;
@@ -36,10 +40,6 @@ a {
   font-weight: bold;
   padding-left: 0.1in;
   float: left;
-}
-
-.nav-home a:hover {
-    color: #343d46;
 }
 
 .nav-wrap {
