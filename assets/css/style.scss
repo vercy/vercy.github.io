@@ -110,3 +110,12 @@ h6 a:hover, h6 a:focus {
     color: #343d46;
     font-weight: inherit;
 }
+
+.table-of-contents > .header {
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    margin-bottom: 10px;
+    color: rgba(0,0,0,0.25);
+    letter-spacing: 10px;
+
+    font-style: italic;
+}

@@ -1,0 +1,16 @@
+<h1 class="entry-title">
+  {{ post.title }}
+</h1>
+
+<div class="entry">{{ content }}</div>
+
+<div class="table-of-contents">
+  <div class="header">What else?</div>
+  <ul>
+    {% for actPost in site.posts %}
+    <li>
+      <a href="{{ actPost.url }}">{{ actPost.title }}{% if actPost.title == post.title %} ⇦ {% endif %}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
