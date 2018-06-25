@@ -4,7 +4,7 @@ title: Navigator Charts
 date: 2018-06-24
 ---
 
-###### 2018-06-16, [GitHub](https://github.com/vercy/navichart)
+###### 2018-06-24, [GitHub](https://github.com/vercy/navichart)
 
 This week I experimented with approaches to draw images on high dpi displays.
 I put this first because I was not sure what consequences might entail.
