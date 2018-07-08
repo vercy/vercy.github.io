@@ -4,7 +4,18 @@ title: Navigator Charts
 date: 2018-07-01
 ---
 
-###### 2018-07-01, [GitHub](https://github.com/vercy/navichart)
+###### 2018-07-08, [GitHub](https://github.com/vercy/navichart)
+
+Extending the ruler concept to dates seemed straightforward enough
+to venture into the land of chart component layout.
+I started with a concept similar to grid bag layout and evolved it
+into something more practical for the purpose. The main idea is
+to keep the layout separate from the components and allow for
+layout changes without having to worry about individual components.
+
+The code is still a work in progress... 
+
+###### 2018-07-01
 
 The focus of the week was rulers. The resulting ruler formula 
 chooses ticks based on the unit of span to be displayed.
