@@ -1,0 +1,73 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Test Survey</title>
+  <style>
+    body   {font-family: Tahoma, Geneva, sans-serif;}
+	#title {font-size: 12pt;}
+	.red   {color: red;}
+	.green   {color: green;}
+  </style>
+</head>
+<body>
+  <span id="title">Partner integration test survey </span>
+  <div id="content" />
+
+  <script>
+    var Environment = {
+	  PRODUCTION: { name: 'production', serverUrl: 'https://1ql2u7kixc.execute-api.us-west-2.amazonaws.com/prod'},
+      QA: { name: 'qa', serverUrl: 'http://localhost:3000'}
+	};
+
+	var LinkType = {
+	  COMPLETE:  {title: 'Complete',   status: 1},
+	  SCREENOUT: {title: 'Screen-out', status: 2},
+	  QUOTAFULL: {title: 'Quota-full', status: 3}
+	};
+
+    (function() {
+		var env = getEnvironment(getUrlParameter("env"));
+		var psid = getUrlParameter("psid");
+
+		document.getElementById("title").innerHTML += '<span class="'+ (env == Environment.PRODUCTION ? 'red' : 'green' ) +'">' + env.name + '</span> end links:';
+
+		var linksHtml = "";
+		linksHtml += "<ul>";
+		linksHtml += "  <li>" + getLink(env, LinkType.COMPLETE, psid) + "</li>";
+		linksHtml += "  <li>" + getLink(env, LinkType.SCREENOUT, psid) + "</li>";
+		linksHtml += "  <li>" + getLink(env, LinkType.QUOTAFULL, psid) + "</li>";
+		linksHtml += "</ul>";
+
+		document.getElementById("content").innerHTML = linksHtml;
+	})();
+
+	function getEnvironment(urlParamValue) {
+	  return urlParamValue === "qa" ? Environment.QA : Environment.PRODUCTION;
+	}
+
+	function getLink(env, linkType, transactionId) {
+	  let subId = transactionId;
+	  let status = linkType.status;
+	  let ts = new Date().toISOString();
+	  let ip = 'todo'
+	  let hash = 'todo';
+      return "<a href='" + env.serverUrl + "?" +
+              "supplier_sub_id=" + subId +
+              "&transaction_datetimeiso=" + ts +
+              "&status=" + status +
+              "&ip=" + ip +
+              "&signature_hmac_sha=" + hash +
+              "'>"
+              + linkType.title + "</A><BR>\n";
+	}
+
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+	}
+
+  </script>
+</body>
+</html>
