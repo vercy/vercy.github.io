@@ -1,6 +1,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
+  <script src="hashes.js"></script>
   <title>Test Survey</title>
   <style>
     body   {font-family: Tahoma, Geneva, sans-serif;}
@@ -10,54 +11,79 @@
   </style>
 </head>
 <body>
-  <span id="title">Partner integration test survey </span>
+  <span id="title">Integration test survey </span>
   <div id="content" />
 
   <script>
     var Environment = {
-	  PRODUCTION: { name: 'production', serverUrl: 'https://1ql2u7kixc.execute-api.us-west-2.amazonaws.com/prod'},
+	  PRODUCTION: { name: 'production', serverUrl: 'https://1ql2u7kixc.execute-api.us-west-2.amazonaws.com/prod' +
+                '?ts={ts}' +                 // out
+                '&c={transactionId}' +       // out
+                '&c={status}' +              // out
+                '&ip={ip}'},                 // out
+             // '&h={hash}'                  // added after all other have been resolved
       QA: { name: 'qa', serverUrl: 'http://localhost:3000'}
 	};
 
 	var LinkType = {
 	  COMPLETE:  {title: 'Complete',   status: 1},
-	  SCREENOUT: {title: 'Screen-out', status: 2},
-	  QUOTAFULL: {title: 'Quota-full', status: 3}
+	  SCREEN_OUT: {title: 'Screen-out', status: 2},
+	  QUOTA_FULL: {title: 'Quota-full', status: 3},
+      NO_PROJECT: {title: 'No Project', status: 4}
 	};
 
     (function() {
-		var env = getEnvironment(getUrlParameter("env"));
-		var psid = getUrlParameter("psid");
+		let env = getEnvironment(getUrlParameter('env'));
+		// in URL pattern: ?si=#appId#&ssi=#transactionId#&unique_user_id=#UserId
+		let inParameters = {
+          userId: getUrlParameter('unique_user_id'),
+          appId: getUrlParameter('si'),
+          transactionId: getUrlParameter('ssi'),
+          ip: getUrlParameter('ip') // optional
+        };
 
-		document.getElementById("title").innerHTML += '<span class="'+ (env == Environment.PRODUCTION ? 'red' : 'green' ) +'">' + env.name + '</span> end links:';
+		document.getElementById("title").innerHTML += '<span class="'+ (env === Environment.PRODUCTION ? 'red' : 'green' ) +'">' + env.name + '</span> end links:';
 
-		var linksHtml = "";
-		linksHtml += "<ul>";
-		linksHtml += "  <li>" + getLink(env, LinkType.COMPLETE, psid) + "</li>";
-		linksHtml += "  <li>" + getLink(env, LinkType.SCREENOUT, psid) + "</li>";
-		linksHtml += "  <li>" + getLink(env, LinkType.QUOTAFULL, psid) + "</li>";
-		linksHtml += "</ul>";
+		let content = "<br />";
+		content += "<bold>urlPattern: </bold><code>" + env.serverUrl + '</code>';
+		content += "<p>"
+        content += "<table>"
+        content += "<td><td>userId:</td><td><code>" + (inParameters.userId ? inParameters.userId : 'MISSING') + ' [unique_user_id]</code></td></tr>';
+        content += "<td><td>appId: </td><td><code>" + (inParameters.appId ? inParameters.appId : 'MISSING') + ' [si]</code></td></tr>';
+        content += "<td><td>transactionId: </td><td><code>" + (inParameters.transactionId ? inParameters.transactionId : 'MISSING') + ' [ssi]</code></td></tr>';
+        content += "<td><td>ip: </td><td><code>" + (inParameters.ip ? inParameters.ip : 'MISSING') + ' [ip]</code></td></tr>  ';
+        content += "</table>"
 
-		document.getElementById("content").innerHTML = linksHtml;
+		content += "<ul>";
+		content += "  <li>" + getLink(env, LinkType.COMPLETE, inParameters) + "</li>";
+		content += "  <li>" + getLink(env, LinkType.SCREEN_OUT, inParameters) + "</li>";
+		content += "  <li>" + getLink(env, LinkType.QUOTA_FULL, inParameters) + "</li>";
+        content += "  <br />"
+        content += "  <li>" + getLink(env, LinkType.NO_PROJECT, inParameters) + "</li>";
+		content += "</ul>";
+
+		document.getElementById("content").innerHTML = content;
 	})();
 
 	function getEnvironment(urlParamValue) {
 	  return urlParamValue === "qa" ? Environment.QA : Environment.PRODUCTION;
 	}
 
-	function getLink(env, linkType, transactionId) {
-	  let subId = transactionId;
+	function getLink(env, linkType, param) {
+	  let transactionId = param.transactionId;
 	  let status = linkType.status;
 	  let ts = new Date().toISOString();
-	  let ip = 'todo'
-	  let hash = 'todo';
-      return "<a href='" + env.serverUrl + "?" +
-              "supplier_sub_id=" + subId +
-              "&transaction_datetimeiso=" + ts +
-              "&status=" + status +
-              "&ip=" + ip +
-              "&signature_hmac_sha=" + hash +
-              "'>"
+	  let ip = param.ip ? param.ip : '127.0.0.1';
+
+      var url = env.serverUrl;
+      url = url.replaceAll('{transactionId}', transactionId);
+      url = url.replaceAll('{ip}', ip);
+      url = url.replaceAll('{ts}', ts);
+      url = url.replaceAll('{status}', status);
+
+      let hash = new Hashes.SHA1;
+      url += '&h=' + hash.hex(url);
+      return "<a href='" + url + "'>"
               + linkType.title + "</A><BR>\n";
 	}
 
