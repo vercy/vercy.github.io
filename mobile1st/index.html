@@ -94,6 +94,9 @@
           if(t.startsWith('TERM'))
             content += "  <li>" + getLink(env, LinkType[t], inParameters) + "</li>";
         }
+        content += "<br />"
+        content += "  <li>" + getIncompleteLink(env, inParameters) + "</li>";
+        content += "  <li>" + getTemperedLink(env, inParameters) + "</li>";
 
 		content += "</ul>";
 
@@ -121,6 +124,41 @@
       return "<a href='" + url + "'>"
               + linkType.title + "</A><BR>\n";
 	}
+
+    function getIncompleteLink(env, param) {
+      let transactionId = param.transactionId;
+      let status = LinkType.COMPLETE.status;
+      let ip = PUBLIC_IP ? PUBLIC_IP : '127.0.0.1';
+
+      var url = env.serverUrl;
+      url = url.replaceAll('{transactionId}', transactionId);
+      url = url.replaceAll('{ip}', ip);
+      url = url.replaceAll('{ts}', ''); // missing ts
+      url = url.replaceAll('{status}', status);
+
+      let hash = new Hashes.SHA256;
+      url += '&h=' + hash.hex(url);
+      return "<a href='" + url + "'>Incomlpete link - missing ts</A><BR>\n";
+    }
+
+    function getTemperedLink(env, param) {
+      let transactionId = param.transactionId;
+      let status = LinkType.NO_PROJECT.status;
+      let ip = PUBLIC_IP ? PUBLIC_IP : '127.0.0.1';
+      let ts = Math.floor(Date.now() / 1000);
+
+      var url = env.serverUrl;
+      url = url.replaceAll('{transactionId}', transactionId);
+      url = url.replaceAll('{ip}', ip);
+      url = url.replaceAll('{ts}', ts);
+      url = url.replaceAll('{status}', status);
+
+      let hash = new Hashes.SHA256;
+      url += '&h=' + hash.hex(url);
+      url = url.replaceAll('='+status+'&', '='+LinkType.COMPLETE.status + '&');
+
+      return "<a href='" + url + "'>Tempered - NO PROJECT link as a fake COMPLETE</A><BR>\n";
+    }
 
     function getUrlParameter(name) {
       name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
