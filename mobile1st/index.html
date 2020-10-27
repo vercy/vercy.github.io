@@ -2,6 +2,15 @@
 <head>
   <meta charset="utf-8" />
   <script src="hashes.js"></script>
+  <script>
+    var PUBLIC_IP;
+    function getIP(data) {
+      PUBLIC_IP = data && data.ip ? data.ip : undefined;
+    }
+  </script>
+  <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+
+
   <title>Test Survey</title>
   <style>
     body   {font-family: Tahoma, Geneva, sans-serif;}
@@ -15,21 +24,41 @@
   <div id="content" />
 
   <script>
+
     var Environment = {
-	  PRODUCTION: { name: 'production', serverUrl: 'https://1ql2u7kixc.execute-api.us-west-2.amazonaws.com/prod' +
-                '?ts={ts}' +                 // out
-                '&c={transactionId}' +       // out
-                '&c={status}' +              // out
-                '&ip={ip}'},                 // out
-             // '&h={hash}'                  // added after all other have been resolved
+	  PRODUCTION: { name: 'production', serverUrl: 'https://1ql2u7kixc.execute-api.us-west-2.amazonaws.com/prod/SudoCoinsSurveyEnd' +
+                '?ts={ts}' +                 // out %transaction_timestamp%
+                '&t={transactionId}' +       // out %supplier_sub_id%
+                '&c={status}' +              // out %status%
+                '&ip={ip}'},                 // out %ip%
+             // '&h={hash}'                  // out %signature_hmac_sha%
       QA: { name: 'qa', serverUrl: 'http://localhost:3000'}
 	};
 
 	var LinkType = {
-	  COMPLETE:  {title: 'Complete',   status: 1},
-	  SCREEN_OUT: {title: 'Screen-out', status: 2},
-	  QUOTA_FULL: {title: 'Quota-full', status: 3},
-      NO_PROJECT: {title: 'No Project', status: 4}
+	  COMPLETE:  {title: 'Complete',   status: 'C'}, // also tentative
+	  QUOTA_FULL: {title: 'Quota-full', status: 'Q'},
+      NO_PROJECT: {title: 'No Project', status: 'N'},
+      SECURITY: {title: 'Security / Fraud', status: 'F'},
+      BLACKLISTED: {title: 'Account Blacklisted', status: 'B'},
+      TERM_1: {title: 'Screen-out - Demographic term', status: 'T1'},
+      TERM_2: {title: 'Screen-out - No quota allocation', status: 'T2'},
+      TERM_13: {title: 'Screen-out - Completed before', status: 'T13'},
+      TERM_15: {title: 'Screen-out - Termed before', status: 'T15'},
+      TERM_18: {title: 'Screen-out - Wrong country', status: 'T18'},
+      TERM_19: {title: 'Screen-out - Blocked', status: 'T19'},
+      TERM_20: {title: 'Screen-out - Entered before', status: 'T20'},
+      TERM_22: {title: 'Screen-out - No allocation', status: 'T22'},
+      TERM_23: {title: 'Screen-out - No click allocation', status: 'T23'},
+      TERM_26: {title: 'Screen-out - No longer active', status: 'T26'},
+      TERM_29: {title: 'Screen-out - User not invited', status: 'T29'},
+      TERM_33: {title: 'Screen-out - IP address already entered study before', status: 'T33'},
+      TERM_34: {title: 'Screen-out - No longer performing well', status: 'T34'},
+      TERM_37: {title: 'Screen-out - Too low quality score', status: 'T37'},
+      TERM_38: {title: 'Screen-out - Email verification failed', status: 'T38'},
+      TERM_39: {title: 'Screen-out - True Sample verification failed', status: 'T39'},
+      TERM_41: {title: 'Screen-out - No click allocation', status: 'T41'},
+      TERM_47: {title: 'Screen-out - Mobile device not compatible', status: 'T47'}
 	};
 
     (function() {
@@ -38,28 +67,34 @@
 		let inParameters = {
           userId: getUrlParameter('unique_user_id'),
           appId: getUrlParameter('si'),
-          transactionId: getUrlParameter('ssi'),
-          ip: getUrlParameter('ip') // optional
+          transactionId: getUrlParameter('ssi')
         };
 
 		document.getElementById("title").innerHTML += '<span class="'+ (env === Environment.PRODUCTION ? 'red' : 'green' ) +'">' + env.name + '</span> end links:';
 
-		let content = "<br />";
-		content += "<bold>urlPattern: </bold><code>" + env.serverUrl + '</code>';
-		content += "<p>"
+		let content = "<p>";
+		content += "<bold>urlPattern: </bold><code>" + env.serverUrl + '</code><br/>';
+        content += "<bold>ipAddress: </bold><code>" + (PUBLIC_IP ? PUBLIC_IP : 'MISSING') + '</code>';
+		content += "</p><p>"
         content += "<table>"
         content += "<td><td>userId:</td><td><code>" + (inParameters.userId ? inParameters.userId : 'MISSING') + ' [unique_user_id]</code></td></tr>';
         content += "<td><td>appId: </td><td><code>" + (inParameters.appId ? inParameters.appId : 'MISSING') + ' [si]</code></td></tr>';
         content += "<td><td>transactionId: </td><td><code>" + (inParameters.transactionId ? inParameters.transactionId : 'MISSING') + ' [ssi]</code></td></tr>';
-        content += "<td><td>ip: </td><td><code>" + (inParameters.ip ? inParameters.ip : 'MISSING') + ' [ip]</code></td></tr>  ';
+
         content += "</table>"
 
 		content += "<ul>";
 		content += "  <li>" + getLink(env, LinkType.COMPLETE, inParameters) + "</li>";
-		content += "  <li>" + getLink(env, LinkType.SCREEN_OUT, inParameters) + "</li>";
 		content += "  <li>" + getLink(env, LinkType.QUOTA_FULL, inParameters) + "</li>";
-        content += "  <br />"
         content += "  <li>" + getLink(env, LinkType.NO_PROJECT, inParameters) + "</li>";
+        content += "  <li>" + getLink(env, LinkType.SECURITY, inParameters) + "</li>";
+        content += "  <li>" + getLink(env, LinkType.BLACKLISTED, inParameters) + "</li>";
+        content += "<br />"
+        for(let t in LinkType) {
+          if(t.startsWith('TERM'))
+            content += "  <li>" + getLink(env, LinkType[t], inParameters) + "</li>";
+        }
+
 		content += "</ul>";
 
 		document.getElementById("content").innerHTML = content;
@@ -72,8 +107,8 @@
 	function getLink(env, linkType, param) {
 	  let transactionId = param.transactionId;
 	  let status = linkType.status;
-	  let ts = new Date().toISOString();
-	  let ip = param.ip ? param.ip : '127.0.0.1';
+	  let ts = Math.floor(Date.now() / 1000);
+	  let ip = PUBLIC_IP ? PUBLIC_IP : '127.0.0.1';
 
       var url = env.serverUrl;
       url = url.replaceAll('{transactionId}', transactionId);
@@ -81,7 +116,7 @@
       url = url.replaceAll('{ts}', ts);
       url = url.replaceAll('{status}', status);
 
-      let hash = new Hashes.SHA1;
+      let hash = new Hashes.SHA256;
       url += '&h=' + hash.hex(url);
       return "<a href='" + url + "'>"
               + linkType.title + "</A><BR>\n";
@@ -95,5 +130,6 @@
 	}
 
   </script>
+
 </body>
 </html>
