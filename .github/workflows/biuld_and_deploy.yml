@@ -12,7 +12,9 @@ jobs:
       #   uses: actions/setup-node@v4
 
       - name: Build
-        run: npm -v
+        run: |
+          npm -v
+          node -v
         # run: |
         #   npm ci
         #   npm run build
