@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="App">
       <div className='circle-wrapper '>
+        <div className='tile vercy'>V</div>
         <div className='tile umlaut deg-0'>
         <a href="https://umlaut.hu">ÜD</a>
         </div>
