@@ -2,37 +2,65 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a,
+a:link,
+a:visited {
+  color: darkgray;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+}
+.tile {
+  display:block;
+  position:absolute;
+  top:35vh;
+  left:50vw;
+  margin-left:-2.5rem;
+  text-align:center;
+  font-size: 8vh;
+}
+.deg-0 {
+  transform:rotate(-90deg) translate(17vh) rotate(90deg)
+}
+.deg-72 {
+  transform:rotate(-18deg) translate(15vh) rotate(18deg);
+}
+.deg-144 {
+  transform:rotate(54deg) translate(16vh) rotate(-54deg);
+}
+.deg-216 {
+  transform:rotate(126deg) translate(16vh) rotate(-126deg);
+}
+.deg-288 {
+  transform:rotate(198deg) translate(15vh) rotate(-198deg);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.umlaut {
+  font-family: "Saira";
+  font-weight: 900;
+  background: linear-gradient(rgb(105, 224, 235), rgb(186, 235, 239));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 2px rgb(105, 224, 235));
+  &:hover {
+    filter: drop-shadow(0 0 3px rgb(105, 224, 235));
   }
 }
+.facebook, .youtube, .github {
+  &:hover {
+    filter: drop-shadow(0 0 3px black);
+  }
+}
+.youtube {
+  padding-top: 18px;
+}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.github a {
   display: flex;
-  flex-direction: column;
+  height: 8vh;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.linkedin:hover {
+  filter: drop-shadow(0 0 2px rgb(15, 28, 47));
 }
