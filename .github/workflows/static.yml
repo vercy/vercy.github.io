@@ -3,11 +3,6 @@ on:
   push:
     branches: ["main"]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -29,5 +24,6 @@ jobs:
           name: github-pages
           path: ./build
       - name: Deploy to GitHub Pages
+        token: ${{ secrets.CI_CD_SECRET }}
         id: deployment
         uses: actions/deploy-pages@v4
