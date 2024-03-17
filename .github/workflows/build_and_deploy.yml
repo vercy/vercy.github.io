@@ -4,18 +4,37 @@ on:
     branches: [ "main" ]
 
 jobs:
+  # Build prod artifacts
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20.x
 
-      - name: Build
+      - name: Build React App
         run: |
-          npm -v
-          node -v
-        # run: |
-        #   npm ci
-        #   npm run build
+          npm i
+          npm run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: production-files
+          path: ./build
+
+  # Deploy to gh-pages
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: production-files
+          path: ./build
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.CI_CD_SECRET }}
+          publish_dir: ./build
