@@ -52,24 +52,38 @@ a:hover {
     filter: drop-shadow(0 0 3px black);
   }
 }
-.youtube {
-  padding-top: 18px;
-}
-
-.github a {
-  display: flex;
-  height: 8vh;
-  align-items: center;
+.facebook img {
+  width: 9vh;
 }
 .linkedin:hover {
   filter: drop-shadow(0 0 2px rgb(15, 28, 47));
 }
+.linkedin img {
+  height: 7vh;
+}
+.youtube {
+  padding-top: 18px;
+}
+.youtube img {
+  width: 9vh;
+}
+
+.github a {
+  display: flex;
+  /* width: 10vh; */
+  margin-left: -5vh;
+  align-items: center;
+}
+.github img {
+  width: 22vh;
+}
+
 
 .vercy {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 4rem;
-  padding-left: 2rem;
-  padding-top: 0.5rem;
+  font-size: 8vh;
+  padding-left: 3.5vh;
+  padding-top: 0.5vh;
   font-weight: 900;
   background: linear-gradient(#222a31, #191e4b);
   background-clip: text;

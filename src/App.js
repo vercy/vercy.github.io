@@ -14,7 +14,7 @@ function App() {
         </div>
         <div className='tile facebook deg-288'>
           <a href="https://facebook.com/megavercy">
-            <img src={fblogo} alt="f" width="90px" height="90px" />
+            <img src={fblogo} alt="f" width="90px" />
           </a>
         </div>
         <div className='tile linkedin deg-216'>
@@ -24,7 +24,7 @@ function App() {
         </div>
         <div className='tile youtube deg-72'>
           <a href="https://youtube.com/megavercy">
-            <img src={ytlogo} alt="YouTube" width="90px" height="64px" />
+            <img src={ytlogo} alt="YouTube" width="90px" />
           </a>
         </div>
         <div className='tile github deg-144'>
