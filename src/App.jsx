@@ -1,8 +1,8 @@
 import './App.css';
-import fblogo from './Facebook_Logo_Secondary.png'
-import ytlogo from './yt_icon_mono_dark.png'
-import ghlogo from './GitHub_Logo_White.png'
-import inlogo from './LI-In-Bug.png'
+import fblogo from './assets/Facebook_Logo_Secondary.png'
+import ytlogo from './assets/yt_icon_mono_dark.png'
+import ghlogo from './assets/GitHub_Logo_White.png'
+import inlogo from './assets/LI-In-Bug.png'
 
 function App() {
   return (
@@ -37,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
